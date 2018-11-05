@@ -30,11 +30,11 @@ print(json.dumps(response.json(), indent=4))  # sometimes results in character r
 
 
 
-# Apple query
-url = 'https://newsapi.org/v2/top-headlines?'
+# average query
+url = 'https://newsapi.org/v2/everything?'
 extra_params = {
     'q': 'average',
-    'from': '2018-11-05',  # TODO get this as a datetime param
+    'from': '2018-10-05',  # TODO get this as a datetime param
     'sortBy': 'popularity',
     'apiKey': environ.get('API_KEY')
 }
