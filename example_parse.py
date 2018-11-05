@@ -1,6 +1,6 @@
 import re
 
-pattern = re.compile(r'average (?P<subject>\w+) (?P<verb>.*?)(?P<number>\d+)(?P<ending>.*?)[?.!,;]')
+pattern = re.compile(r'average (?P<subject>\w+) (?P<verb>.*?)(?P<number>\d+)(?P<ending>.*?)[?.!,;-]')
 
 result = {
   "source": {
