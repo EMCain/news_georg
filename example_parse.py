@@ -1,6 +1,6 @@
 import re
 
-pattern = re.compile('average (?P<subject>\w+) (?P<verb>.*?)(?P<number>\d+)')
+pattern = re.compile(r'average (?P<subject>\w+) (?P<verb>.*?)(?P<number>\d+)(?P<ending>.*?)[?.!,;]')
 
 result = {
   "source": {
@@ -18,13 +18,13 @@ result = {
 match = pattern.search(result.get('description'))
 
 bounds = match.span()
-factoid = match.string[bounds[0]:bounds[1]]
+factoid = match.string[bounds[0]:bounds[1] - 1] # remove final punctuation
 
-georg_template = u'“{factoid}" factoid actualy just statistical error. average {subject} {verb}0 {ending}. Spiders Georg, who lives in cave & eats over 10,000 each day, is an outlier adn should not have been counted'
+georg_template = u'“{factoid}” factoid actualy just statistical error. average {subject} {verb}0{ending}. {subject} Georg, who lives in cave & {verb}10,000, is an outlier adn should not have been counted'
 
 print(georg_template.format(
     factoid=factoid,
     subject=match.group('subject'),
     verb=match.group('verb'),
-    ending='per year'
+    ending=match.group('ending')
 ))
